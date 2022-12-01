@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "toomanybuttons",
+  "version": "${version}",
+  "name": "TooManyButtons",
+  "description": "Do you really need a send feedback button?",
+  "authors": [
+    "DiffuseHyperion"
+  ],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "icon": "assets/TooManyButtons/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "tk.diffusehyperion.toomanybuttons.TooManyButtons"
+    ],
+    "modmenu": [
+      "tk.diffusehyperion.toomanybuttons.config.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "TooManyButtons.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.11",
+    "fabric": "*",
+    "minecraft": "1.19.2",
+    "modmenu": ">=4.0.6",
+    "cloth-config": ">=8.2.88"
+  },
+  "accessWidener" : "assets/toomanybuttons/TooManyButtons.accesswidener"
+}
