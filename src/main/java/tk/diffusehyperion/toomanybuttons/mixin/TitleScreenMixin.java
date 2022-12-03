@@ -1,14 +1,8 @@
 package tk.diffusehyperion.toomanybuttons.mixin;
 
-import com.terraformersmc.modmenu.api.ModMenuApi;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.TitleScreen;
-import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
-import net.minecraft.client.gui.screen.option.OptionsScreen;
-import net.minecraft.client.gui.screen.world.SelectWorldScreen;
-import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
-import org.slf4j.Logger;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Mutable;
@@ -17,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.*;
+import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.HIDE_COPYRIGHT;
 
 @Mixin(TitleScreen.class)
 public abstract class TitleScreenMixin extends Screen {
