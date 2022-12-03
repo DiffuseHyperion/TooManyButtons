@@ -33,6 +33,7 @@ public class ClothConfigHandler {
     public static boolean HIDE_MODMENU_GAMEMENU;
     public static boolean HIDE_OPTIONS_GAMEMENU;
     public static boolean HIDE_LAN;
+    public static boolean HIDE_REPORTING;
 
     // options
     public static boolean HIDE_FOV;
@@ -82,6 +83,7 @@ public class ClothConfigHandler {
                     .name("HIDE_MODMENU_GAMEMENU").value(HIDE_MODMENU_GAMEMENU)
                     .name("HIDE_OPTIONS_GAMEMENU").value(HIDE_OPTIONS_GAMEMENU)
                     .name("HIDE_LAN").value(HIDE_LAN)
+                    .name("HIDE_REPORTING").value(HIDE_REPORTING)
 
                     .name("HIDE_FOV").value(HIDE_FOV)
                     .name("HIDE_DIFFICULTY").value(HIDE_DIFFICULTY)
@@ -136,6 +138,7 @@ public class ClothConfigHandler {
                 HIDE_MODMENU_GAMEMENU = readBoolean(object, "HIDE_MODMENU_GAMEMENU", false);
                 HIDE_OPTIONS_GAMEMENU = readBoolean(object, "HIDE_OPTIONS_GAMEMENU", false);
                 HIDE_LAN = readBoolean(object, "HIDE_LAN", false);
+                HIDE_REPORTING = readBoolean(object, "HIDE_REPORTING", false);
 
                 HIDE_FOV = readBoolean(object, "HIDE_FOV", false);
                 HIDE_DIFFICULTY = readBoolean(object, "HIDE_DIFFICULTY", false);
@@ -183,6 +186,7 @@ public class ClothConfigHandler {
         HIDE_MODMENU_GAMEMENU = false;
         HIDE_OPTIONS_GAMEMENU = false;
         HIDE_LAN = false;
+        HIDE_REPORTING = false;
 
         HIDE_FOV = false;
         HIDE_DIFFICULTY = false;

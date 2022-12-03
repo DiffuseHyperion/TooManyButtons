@@ -23,7 +23,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Objects;
 
-import static tk.diffusehyperion.toomanybuttons.TooManyButtons.logger;
 import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.*;
 
 @Mixin(value = Screen.class, priority = 1100)
@@ -101,7 +100,13 @@ public abstract class ScreenMixin {
             if (widgetMatchesKey(widget, "menu.shareToLan")) {
                 widget.y -= 24;
             }
+            if (widgetMatchesKey(widget, "menu.playerReporting")) {
+                widget.y -= 24;
+            }
             if (widgetMatchesKey(widget, "menu.returnToMenu")) {
+                widget.y -= 24;
+            }
+            if (widgetMatchesKey(widget, "menu.disconnect")) {
                 widget.y -= 24;
             }
         }
@@ -111,7 +116,7 @@ public abstract class ScreenMixin {
         int yOffsetLeft = 0;
         // includes advancements, give feedback, options
         int yOffsetRight = 0;
-        // includes statistics, report bugs, lan
+        // includes statistics, report bugs, lan/report players
         for (ClickableWidget widget : Screens.getButtons((Screen)(Object) this)) {
             if (widgetMatchesKey(widget, "gui.advancements")) {
                 yOffsetLeft = changeWidget(widget, HIDE_ADVANCEMENT, yOffsetLeft);
@@ -130,6 +135,9 @@ public abstract class ScreenMixin {
             }
             if (widgetMatchesKey(widget, "menu.shareToLan")) {
                 yOffsetRight = changeWidget(widget, HIDE_LAN, yOffsetRight);
+            }
+            if (widgetMatchesKey(widget, "menu.playerReporting")) {
+                yOffsetRight = changeWidget(widget, HIDE_REPORTING, yOffsetRight);
             }
             if (widgetMatchesKey(widget, "modmenu.title")) {
                 if (HIDE_MODMENU_GAMEMENU) {
@@ -232,10 +240,8 @@ public abstract class ScreenMixin {
                 yOffsetRight = changeWidget(widget, HIDE_MUSIC, yOffsetRight);
             }
             if (widgetMatchesKey(widget, "options.controls")) {
-                if (SIMPLIFY_CONTROLS) {
-                    widget.visible = false;
-                    // cant change widget pressaction, so recreating the button
-                } else {
+                if (!SIMPLIFY_CONTROLS) {
+                    // simplify controls will take care of setting it invisible
                     yOffsetRight = changeWidget(widget, HIDE_CONTROLS, yOffsetRight);
                 }
             }

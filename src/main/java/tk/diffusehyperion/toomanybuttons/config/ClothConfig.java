@@ -101,6 +101,11 @@ public class ClothConfig {
                 .setSaveConsumer(newValue -> HIDE_LAN = newValue)
                 .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.lan.tooltip"))
                 .build());
+        gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.reporting"), HIDE_REPORTING)
+                .setDefaultValue(false)
+                .setSaveConsumer(newValue -> HIDE_REPORTING = newValue)
+                .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.reporting.tooltip"))
+                .build());
 
 
 
