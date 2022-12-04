@@ -82,6 +82,5 @@
   "config.toomanybuttons.controlsmenu.autojump": "Hide Auto-Jump",
   "config.toomanybuttons.controlsmenu.autojump.tooltip": "Hides the auto-jump button.",
 
-  "config.toomanybuttons.modmenu.warning.title": "Too Many Buttons",
-  "config.toomanybuttons.modmenu.warning.body": "Too Many Buttons is designed to only support the 'Below Realms' version of the mod button. Thus, the mod will override this particular settings. Hope you're okay with this!"
+  "config.toomanybuttons.modmenu.warning.body": "Too Many Buttons is designed to only support the 'Below Realms' and 'Icon' version of the mod button. Thus, the mod will override this particular setting. Hope you're okay with this!"
 }
