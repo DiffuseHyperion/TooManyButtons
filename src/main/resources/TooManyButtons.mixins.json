@@ -4,13 +4,12 @@
   "package": "tk.diffusehyperion.toomanybuttons.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ModMenuConfigManagerMixin"
   ],
   "client": [
-    "ModMenuOptionsScreenMixin",
     "OptionsScreenMixin",
     "ScreenMixin",
-    "TitleScreenMixin"
+    "TitleScreenMixin",
+    "ModMenuConfigManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
