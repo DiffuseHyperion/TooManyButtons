@@ -11,6 +11,8 @@
   "config.toomanybuttons.titlescreen.multiplayer.tooltip": "Hides the multiplayer button.",
   "config.toomanybuttons.titlescreen.realms": "Hide Realms",
   "config.toomanybuttons.titlescreen.realms.tooltip": "Hides the realms button.",
+  "config.toomanybuttons.titlescreen.realms.disabled": "(DISABLED) Hide Realms",
+  "config.toomanybuttons.titlescreen.realms.tooltip.disabled": "Since mod menu's button style is set to 'Replace Realms', this setting will have no effect since the button overrides this button.",
   "config.toomanybuttons.titlescreen.modmenu": "Hide Mod Menu",
   "config.toomanybuttons.titlescreen.modmenu.tooltip": "Hides the mod menu button. You shouldn't probably use this...",
   "config.toomanybuttons.titlescreen.options": "Hide Options",
@@ -34,6 +36,8 @@
   "config.toomanybuttons.gamemenu.feedback.tooltip": "Hides the give feedback button.",
   "config.toomanybuttons.gamemenu.report": "Hide Report Bugs",
   "config.toomanybuttons.gamemenu.report.tooltip": "Hides the report bugs button.",
+  "config.toomanybuttons.gamemenu.report.disabled": "(DISABLED) Hide Report Bugs",
+  "config.toomanybuttons.gamemenu.report.tooltip.disabled": "Since mod menu's button style is set to 'Icon', this setting will have no effect since the button overrides this button.",
   "config.toomanybuttons.gamemenu.modmenu": "Hide Mod Menu",
   "config.toomanybuttons.gamemenu.modmenu.tooltip": "Hides the mod menu button. You shouldn't probably use this...",
   "config.toomanybuttons.gamemenu.options": "Hide Options",
@@ -88,5 +92,5 @@
   "config.toomanybuttons.controlsmenu.autojump": "Hide Auto-Jump",
   "config.toomanybuttons.controlsmenu.autojump.tooltip": "Hides the auto-jump button.",
 
-  "config.toomanybuttons.modmenu.warning.body": "Too Many Buttons is designed to only support the 'Below Realms' and 'Icon' version of the mod button. Thus, the mod will override this particular setting. Hope you're okay with this!"
+  "config.toomanybuttons.modmenu.warning.body": "Too Many Buttons is designed to only support the 'Below Realms' style of the mod button. Although there is support for other styles, certain menus may not appear as they should."
 }

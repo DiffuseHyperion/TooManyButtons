@@ -24,7 +24,7 @@ public class EditGameScreen extends ScreenWidgetEditor{
     }
 
     public void main() {
-        if (MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.CLASSIC)) {
+        if (MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.CLASSIC) || MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.REPLACE_REALMS)) {
             moveDownKeyedWidget("modmenu.title", 48);
             moveUpKeyedWidget("menu.options", 24);
             if (client.isInSingleplayer()) {
@@ -41,7 +41,11 @@ public class EditGameScreen extends ScreenWidgetEditor{
         List<Tuple> widgetList = new ArrayList<>();
         widgetList.add(new Unit<>(new Pair<>(HIDE_BACKTOGAME, getWidget("menu.returnToGame"))));
         widgetList.add(new Pair<>(new Pair<>(HIDE_ADVANCEMENT, getWidget("gui.advancements")), new Pair<>(HIDE_STATISTICS, getWidget("gui.stats"))));
-        widgetList.add(new Pair<>(new Pair<>(HIDE_FEEDBACK, getWidget("menu.sendFeedback")), new Pair<>(HIDE_REPORT, getWidget("menu.reportBugs"))));
+        if (MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.SHRINK)) {
+            widgetList.add(new Pair<>(new Pair<>(HIDE_FEEDBACK, getWidget("menu.sendFeedback")), new Pair<>(HIDE_MODMENU_GAMEMENU, getWidget("modmenu.title"))));
+        } else {
+            widgetList.add(new Pair<>(new Pair<>(HIDE_FEEDBACK, getWidget("menu.sendFeedback")), new Pair<>(HIDE_REPORT, getWidget("menu.reportBugs"))));
+        }
         if (client.isInSingleplayer()) {
             widgetList.add(new Pair<>(new Pair<>(HIDE_OPTIONS_GAMEMENU, getWidget("menu.options")), new Pair<>(HIDE_LAN, getWidget("menu.shareToLan"))));
             widgetList.add(new Unit<>(new Pair<>(HIDE_SAVEANDQUIT, getWidget("menu.returnToMenu"))));
@@ -49,7 +53,7 @@ public class EditGameScreen extends ScreenWidgetEditor{
             widgetList.add(new Pair<>(new Pair<>(HIDE_OPTIONS_GAMEMENU, getWidget("menu.options")), new Pair<>(HIDE_REPORTING, getWidget("menu.playerReporting"))));
             widgetList.add(new Unit<>(new Pair<>(HIDE_DISCONNECT, getWidget("menu.disconnect"))));
         }
-        if (MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.CLASSIC)) {
+        if (MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.CLASSIC) || MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.REPLACE_REALMS)) {
             widgetList.add(new Unit<>(new Pair<>(HIDE_MODMENU_GAMEMENU, getWidget("modmenu.title"))));
         }
         int yOffset = editWidgetScreen(widgetList, 205, 106);

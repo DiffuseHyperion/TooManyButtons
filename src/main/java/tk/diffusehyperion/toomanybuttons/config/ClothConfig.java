@@ -1,11 +1,13 @@
 package tk.diffusehyperion.toomanybuttons.config;
 
+import com.terraformersmc.modmenu.config.ModMenuConfig;
 import me.shedaniel.clothconfig2.api.ConfigBuilder;
 import me.shedaniel.clothconfig2.api.ConfigCategory;
 import me.shedaniel.clothconfig2.api.ConfigEntryBuilder;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
+import static com.terraformersmc.modmenu.config.ModMenuConfig.MODS_BUTTON_STYLE;
 import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.*;
 
 public class ClothConfig {
@@ -33,11 +35,19 @@ public class ClothConfig {
                 .setSaveConsumer(newValue -> HIDE_MULTIPLAYER = newValue)
                 .setTooltip(Text.translatable("config.toomanybuttons.titlescreen.multiplayer.tooltip"))
                 .build());
-        titleScreenConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.titlescreen.realms"), HIDE_REALMS)
-                .setDefaultValue(false)
-                .setSaveConsumer(newValue -> HIDE_REALMS = newValue)
-                .setTooltip(Text.translatable("config.toomanybuttons.titlescreen.realms.tooltip"))
-                .build());
+        if (MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.REPLACE_REALMS)) {
+            titleScreenConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.titlescreen.realms.disabled"), HIDE_REALMS)
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> HIDE_REALMS = newValue)
+                    .setTooltip(Text.translatable("config.toomanybuttons.titlescreen.realms.tooltip.disabled"))
+                    .build());
+        } else {
+            titleScreenConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.titlescreen.realms"), HIDE_REALMS)
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> HIDE_REALMS = newValue)
+                    .setTooltip(Text.translatable("config.toomanybuttons.titlescreen.realms.tooltip"))
+                    .build());
+        }
         titleScreenConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.titlescreen.modmenu"), HIDE_MODMENU_TITLESCREEN)
                 .setDefaultValue(false)
                 .setSaveConsumer(newValue -> HIDE_MODMENU_TITLESCREEN = newValue)
@@ -90,11 +100,19 @@ public class ClothConfig {
                 .setSaveConsumer(newValue -> HIDE_FEEDBACK = newValue)
                 .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.feedback.tooltip"))
                 .build());
-        gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.report"), HIDE_REPORT)
-                .setDefaultValue(false)
-                .setSaveConsumer(newValue -> HIDE_REPORT = newValue)
-                .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.report.tooltip"))
-                .build());
+        if (MODS_BUTTON_STYLE.getValue().equals(ModMenuConfig.ModsButtonStyle.SHRINK)) {
+            gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.report.disabled"), HIDE_REPORT)
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> HIDE_REPORT = newValue)
+                    .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.report.tooltip.disabled"))
+                    .build());
+        } else {
+            gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.report"), HIDE_REPORT)
+                    .setDefaultValue(false)
+                    .setSaveConsumer(newValue -> HIDE_REPORT = newValue)
+                    .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.report.tooltip"))
+                    .build());
+        }
         gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.modmenu"), HIDE_MODMENU_GAMEMENU)
                 .setDefaultValue(false)
                 .setSaveConsumer(newValue -> HIDE_MODMENU_GAMEMENU = newValue)
