@@ -43,6 +43,11 @@ public class ClothConfig {
                 .setSaveConsumer(newValue -> HIDE_MODMENU_TITLESCREEN = newValue)
                 .setTooltip(Text.translatable("config.toomanybuttons.titlescreen.modmenu.tooltip"))
                 .build());
+        titleScreenConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.titlescreen.options"), HIDE_OPTIONS_TITLESCREEN)
+                .setDefaultValue(false)
+                .setSaveConsumer(newValue -> HIDE_OPTIONS_TITLESCREEN = newValue)
+                .setTooltip(Text.translatable("config.toomanybuttons.titlescreen.options.tooltip"))
+                .build());
         titleScreenConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.titlescreen.quitgame"), HIDE_QUITGAME)
                 .setDefaultValue(false)
                 .setSaveConsumer(newValue -> HIDE_QUITGAME = newValue)
@@ -65,7 +70,11 @@ public class ClothConfig {
                 .build());
 
 
-
+        gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.backtogame"), HIDE_BACKTOGAME)
+                .setDefaultValue(false)
+                .setSaveConsumer(newValue -> HIDE_BACKTOGAME = newValue)
+                .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.backtogame.tooltip"))
+                .build());
         gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.advancement"), HIDE_ADVANCEMENT)
                 .setDefaultValue(false)
                 .setSaveConsumer(newValue -> HIDE_ADVANCEMENT = newValue)
@@ -91,11 +100,6 @@ public class ClothConfig {
                 .setSaveConsumer(newValue -> HIDE_MODMENU_GAMEMENU = newValue)
                 .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.modmenu.tooltip"))
                 .build());
-        gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.options"), HIDE_OPTIONS_GAMEMENU)
-                .setDefaultValue(false)
-                .setSaveConsumer(newValue -> HIDE_OPTIONS_GAMEMENU = newValue)
-                .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.options.tooltip"))
-                .build());
         gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.lan"), HIDE_LAN)
                 .setDefaultValue(false)
                 .setSaveConsumer(newValue -> HIDE_LAN = newValue)
@@ -105,6 +109,21 @@ public class ClothConfig {
                 .setDefaultValue(false)
                 .setSaveConsumer(newValue -> HIDE_REPORTING = newValue)
                 .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.reporting.tooltip"))
+                .build());
+        gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.saveandquit"), HIDE_SAVEANDQUIT)
+                .setDefaultValue(false)
+                .setSaveConsumer(newValue -> HIDE_SAVEANDQUIT = newValue)
+                .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.saveandquit.tooltip"))
+                .build());
+        gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.disconnect"), HIDE_DISCONNECT)
+                .setDefaultValue(false)
+                .setSaveConsumer(newValue -> HIDE_DISCONNECT = newValue)
+                .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.disconnect.tooltip"))
+                .build());
+        gameMenuConfig.addEntry(entryBuilder.startBooleanToggle(Text.translatable("config.toomanybuttons.gamemenu.options"), HIDE_OPTIONS_GAMEMENU)
+                .setDefaultValue(false)
+                .setSaveConsumer(newValue -> HIDE_OPTIONS_GAMEMENU = newValue)
+                .setTooltip(Text.translatable("config.toomanybuttons.gamemenu.options.tooltip"))
                 .build());
 
 

@@ -5,10 +5,12 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.LockButtonWidget;
 import net.minecraft.text.Text;
+import org.javatuples.Pair;
+import org.javatuples.Tuple;
+import org.javatuples.Unit;
 
 import java.util.HashMap;
-
-import static tk.diffusehyperion.toomanybuttons.TooManyButtons.logger;
+import java.util.List;
 
 public class ScreenWidgetEditor {
 
@@ -47,9 +49,74 @@ public class ScreenWidgetEditor {
             hideKeyedWidget(key);
             offset += 24;
         } else {
-            moveDownKeyedWidget(key, offset);
+            moveUpKeyedWidget(key, offset);
         }
         return offset;
+    }
+
+    /**
+     * @apiNote Method presumes that
+     * the row has only 2 widgets and
+     * the first value in the pair is the left widget within the row and vice versa
+     *
+     * @return Returns if the row is completely invisible
+     */
+    public boolean editWidgetRow(Pair<Pair<Boolean, ClickableWidget>, Pair<Boolean, ClickableWidget>> booleanToWidget, int width, int xOffset) {
+        boolean leftBoolean = booleanToWidget.getValue0().getValue0();
+        boolean rightBoolean = booleanToWidget.getValue1().getValue0();
+        ClickableWidget leftWidget = booleanToWidget.getValue0().getValue1();
+        ClickableWidget rightWidget = booleanToWidget.getValue1().getValue1();
+        if (leftBoolean & rightBoolean) {
+            leftWidget.visible = false;
+            rightWidget.visible = false;
+            return true;
+        }
+        if (rightBoolean) {
+            rightWidget.visible = false;
+            leftWidget.setWidth(width);
+        }
+        if (leftBoolean) {
+            leftWidget.visible = false;
+            rightWidget.x -= xOffset; //160
+            rightWidget.setWidth(width); //310
+        }
+        return false;
+    }
+
+    /**
+     * @apiNote Unit<Boolean, Widget>, Pair<Pair<Boolean, Widget>, Pair<Boolean, Widget>>
+     * @implNote Add the elements in the argument list from top to bottom.
+     * @implSpec Use a different tuple for each row; Unit for a row containing 1 widget and Pairs for 2 widgets. There is no >2 widgets per row anywhere in MC (i think)
+     * @return Returns button Y offset
+     */
+    public int editWidgetScreen(List<Tuple> widgets, int width, int xOffset) {
+        int offsetY = 0;
+        for (Tuple tuple : widgets) {
+            switch (tuple.getSize()) {
+                case 1 -> {
+                    Unit<Pair<Boolean, ClickableWidget>> clickableWidgetUnit = (Unit<Pair<Boolean, ClickableWidget>>) tuple;
+                    ClickableWidget widget = clickableWidgetUnit.getValue0().getValue1();
+                    boolean bool = clickableWidgetUnit.getValue0().getValue0();
+                    if (bool) {
+                        offsetY += 24;
+                        widget.visible = false;
+                    } else {
+                        widget.y -= offsetY;
+                    }
+                }
+                case 2 -> {
+                    Pair<Pair<Boolean, ClickableWidget>, Pair<Boolean, ClickableWidget>> clickableWidgetPair = (Pair<Pair<Boolean, ClickableWidget>, Pair<Boolean, ClickableWidget>>) tuple;
+                    if (editWidgetRow(clickableWidgetPair, width, xOffset)) {
+                        offsetY += 24;
+                    } else {
+                        clickableWidgetPair.getValue0().getValue1().y -= offsetY;
+                        clickableWidgetPair.getValue1().getValue1().y -= offsetY;
+                    }
+                }
+                default -> throw new IllegalStateException("Unexpected value: " + tuple.getSize());
+            }
+        }
+        return offsetY;
     }
 
     /**
@@ -57,12 +124,8 @@ public class ScreenWidgetEditor {
      */
     public ClickableWidget getWidgetContainingKey(String key) {
         for (ClickableWidget widget : Screens.getButtons(screen)) {
-            logger.info("checking widget msg: " + widget.getMessage().getString());
             if (widget.getMessage().contains(Text.translatable(key))) {
-                logger.info("hit");
                 return widget;
-            } else {
-                logger.info("no hit");
             }
         }
         throw new RuntimeException("TooManyButtons: Something went wrong trying to hide buttons! Error: Could not find a widget containing the key: " + key);

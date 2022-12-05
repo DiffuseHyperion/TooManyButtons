@@ -38,7 +38,7 @@ public abstract class ScreenMixin {
         if (screen instanceof TitleScreen) {
             new EditTitleScreen(screen).main();
         } else if (screen instanceof GameMenuScreen) {
-            new EditGameScreen(screen).main();
+            new EditGameScreen(screen, client).main();
         } else if (screen instanceof OptionsScreen) {
             new EditOptionsScreen(screen, client).main();
         } else if (!SIMPLIFY_CONTROLS && screen instanceof ControlsOptionsScreen) {

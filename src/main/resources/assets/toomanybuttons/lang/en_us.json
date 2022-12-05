@@ -24,6 +24,8 @@
   "config.toomanybuttons.titlescreen.copyright": "Hide Copyright",
   "config.toomanybuttons.titlescreen.copyright.tooltip": "Hides the copyright text.",
 
+  "config.toomanybuttons.gamemenu.backtogame": "Hide Back to Game",
+  "config.toomanybuttons.gamemenu.backtogame.tooltip": "Hides the back to game button.",
   "config.toomanybuttons.gamemenu.advancement": "Hide Advancement",
   "config.toomanybuttons.gamemenu.advancement.tooltip": "Hides the advancement button.",
   "config.toomanybuttons.gamemenu.statistics": "Hide Statistics",
@@ -40,6 +42,10 @@
   "config.toomanybuttons.gamemenu.lan.tooltip": "Hides the LAN button in singleplayer.",
   "config.toomanybuttons.gamemenu.reporting": "Hide Player Reporting",
   "config.toomanybuttons.gamemenu.reporting.tooltip": "Hides the player report button in multiplayer.",
+  "config.toomanybuttons.gamemenu.saveandquit": "Hide Save and Quit to Title",
+  "config.toomanybuttons.gamemenu.saveandquit.tooltip": "Hides the save and quit to title button in singleplayer.",
+  "config.toomanybuttons.gamemenu.disconnect": "Hide Disconnect",
+  "config.toomanybuttons.gamemenu.disconnect.tooltip": "Hides the disconnect in multiplayer.",
 
   "config.toomanybuttons.optionsmenu.fov": "Hide FOV",
   "config.toomanybuttons.optionsmenu.fov.tooltip": "Hides the FOV slider.",

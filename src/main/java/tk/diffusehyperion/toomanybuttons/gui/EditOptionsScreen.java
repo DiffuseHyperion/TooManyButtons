@@ -4,6 +4,12 @@ import net.fabricmc.fabric.api.client.screen.v1.Screens;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ClickableWidget;
+import org.javatuples.Pair;
+import org.javatuples.Tuple;
+import org.javatuples.Unit;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.*;
 
@@ -17,6 +23,10 @@ public class EditOptionsScreen extends ScreenWidgetEditor{
     }
 
     public void main() {
+        // options.difficulty, options.fov, options.online
+
+
+        // deal with top row (fov and difficulty) manually since difficulty and lock button are separate widgets
         if (client.isInSingleplayer()) {
             if (HIDE_FOV && HIDE_DIFFICULTY) {
                 for (ClickableWidget widget : Screens.getButtons(screen)) {
@@ -24,55 +34,30 @@ public class EditOptionsScreen extends ScreenWidgetEditor{
                     // it's fine to move up every widget since difficulty and fov would be hidden anyway
                 }
             } else if (HIDE_FOV) {
+                getWidgetContainingKey("options.fov").visible = false;
+
                 ClickableWidget widget = getWidgetContainingKey("options.difficulty");
                 widget.x -= 160;
                 widget.setWidth(290);
             } else if (HIDE_DIFFICULTY) {
+                getWidgetContainingKey("options.difficulty").visible = false;
+                getLockableWidget().visible = false;
                 ClickableWidget widget = getWidgetContainingKey("options.fov");
                 widget.setWidth(310);
             }
         } else {
-            if (HIDE_FOV && HIDE_ONLINE) {
-                for (ClickableWidget widget : Screens.getButtons(screen)) {
-                    widget.y -= 24;
-                    // it's fine to move up every widget since difficulty and fov would be hidden anyway
-                }
-            } else if (HIDE_FOV) {
-                moveLeftOfKeyedWidget("options.online", 160);
-                setWidthOfKeyedWidget("options.online", 310);
-            } else if (HIDE_ONLINE) {
-                setWidthOfKeyedWidget("options.fov", 310);
-            }
+            editWidgetRow(new Pair<>(new Pair<>(HIDE_FOV, getWidgetContainingKey("options.fov")), new Pair<>(HIDE_ONLINE, getWidget("options.online"))), 310, 160);
         }
 
-        if (client.isInSingleplayer()) {
-            if (HIDE_DIFFICULTY) {
-                getWidgetContainingKey("options.difficulty").visible = false;
-                getLockableWidget().visible = false;
-            }
-            if (HIDE_FOV) {
-                getWidgetContainingKey("options.fov").visible = false;
-            }
+        List<Tuple> widgetList = new ArrayList<>();
+        widgetList.add(new Pair<>(new Pair<>(HIDE_SKINS, getWidget("options.skinCustomisation")), new Pair<>(HIDE_MUSIC, getWidget("options.sounds"))));
+        if (!SIMPLIFY_CONTROLS || HIDE_CONTROLS) {
+            widgetList.add(new Pair<>(new Pair<>(HIDE_VIDEO, getWidget("options.video")), new Pair<>(HIDE_CONTROLS, getWidget("options.controls"))));
         } else {
-            if (HIDE_ONLINE) {
-                getWidget("options.online").visible = false;
-            }
+            widgetList.add(new Unit<>(new Pair<>(HIDE_VIDEO, getWidget("options.video"))));
         }
-
-        int yOffsetLeft = 0;
-        // includes skin, video, lang, resource
-        int yOffsetRight = 0;
-        // includes music, controls, chat, accessibility
-        yOffsetLeft = editWidget(HIDE_SKINS, "options.skinCustomisation", yOffsetLeft);
-        yOffsetLeft = editWidget(HIDE_VIDEO, "options.video", yOffsetLeft);
-        yOffsetLeft = editWidget(HIDE_LANGUAGE_OPTIONSMENU, "options.language", yOffsetLeft);
-        editWidget(HIDE_RESOURCE, "options.resourcepack", yOffsetLeft);
-
-        yOffsetRight = editWidget(HIDE_MUSIC, "options.sounds", yOffsetRight);
-        yOffsetRight = editWidget(HIDE_CHAT, "options.chat.title", yOffsetRight);
-        yOffsetRight = editWidget(HIDE_ACCESSIBILITY_OPTIONSMENU, "options.accessibility.title", yOffsetRight);
-        if (!SIMPLIFY_CONTROLS) {
-            editWidget(HIDE_CONTROLS, "options.controls", yOffsetRight);
-        }
+        widgetList.add(new Pair<>(new Pair<>(HIDE_LANGUAGE_OPTIONSMENU, getWidget("options.language")), new Pair<>(HIDE_CHAT, getWidget("options.chat.title"))));
+        widgetList.add(new Pair<>(new Pair<>(HIDE_RESOURCE, getWidget("options.resourcepack")), new Pair<>(HIDE_ACCESSIBILITY_OPTIONSMENU, getWidget("options.accessibility.title"))));
+        editWidgetScreen(widgetList, 310, 160);
     }
 }
