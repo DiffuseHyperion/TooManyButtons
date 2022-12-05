@@ -1,7 +1,6 @@
 package tk.diffusehyperion.toomanybuttons.mixin;
 
 import com.mojang.serialization.Codec;
-import com.terraformersmc.modmenu.config.ModMenuConfig;
 import com.terraformersmc.modmenu.config.option.ConfigOptionStorage;
 import com.terraformersmc.modmenu.config.option.EnumConfigOption;
 import net.minecraft.client.option.SimpleOption;
@@ -33,10 +32,6 @@ public abstract class ModMenuConfigManagerMixin<E extends Enum<E>>{
             List<E> newOptions = new LinkedList<>(Arrays.asList(enumClass.getEnumConstants()));
             // Lists from Arrays.asList cannot do any operations that would modify its size, e.g. adding, removing elements
             // LinkedList fixes that
-            newOptions.remove(ModMenuConfig.ModsButtonStyle.REPLACE_REALMS);
-            newOptions.remove(ModMenuConfig.ModsButtonStyle.SHRINK);
-            // sussy calls?!?!?!?!
-            // really though what causes the ide to give warning "Suspicious call to 'List.remove'"
             SimpleOption<E> option = new SimpleOption<>(
                     translationKey,
                     SimpleOption.constantTooltip(Text.translatable("config.toomanybuttons.modmenu.warning.body")),
