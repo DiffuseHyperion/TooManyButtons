@@ -1,49 +1,50 @@
 package tk.diffusehyperion.toomanybuttons.gui;
 
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
+import org.javatuples.Pair;
+import org.javatuples.Tuple;
+import org.javatuples.Unit;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.*;
 import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.HIDE_MODMENU_GAMEMENU;
 
 public class EditGameScreen extends ScreenWidgetEditor{
-    public EditGameScreen(Screen screen) {
+
+    private final MinecraftClient client;
+    public EditGameScreen(Screen screen, MinecraftClient client) {
         super(screen);
+        this.client = client;
     }
 
     public void main() {
         moveDownKeyedWidget("modmenu.title", 48);
         moveUpKeyedWidget("menu.options", 24);
-        moveUpKeyedWidget("menu.shareToLan", 24);
-        moveUpKeyedWidget("menu.playerReporting", 24);
-        moveUpKeyedWidget("menu.returnToMenu", 24);
-        moveUpKeyedWidget("menu.disconnect", 24);
+        if (client.isInSingleplayer()) {
+            moveUpKeyedWidget("menu.shareToLan", 24);
+            moveUpKeyedWidget("menu.returnToMenu", 24);
+        } else {
+            moveUpKeyedWidget("menu.playerReporting", 24);
+            moveUpKeyedWidget("menu.disconnect", 24);
+        }
         // for some reason, mod menu button is smack in the middle of the menu between feedback and options,
         // so the mod moves it to below quit to title and move everything below original mod menu upwards
 
-        // back to game
-        // advancements - statistics
-        // feedback - report bugs
-        // options - lan/report players
-        // disconnect
-        // mods
-
-        // when 1 row has only 1 button, extend other button to take up the entire row
-        // if the entire row is empty, move all buttons below upwards by 1 row
-        int yOffsetLeft = 0;
-        // includes advancements, give feedback, options
-        int yOffsetRight = 0;
-        // includes statistics, report bugs, lan/report players
-        yOffsetLeft = editWidget(HIDE_ADVANCEMENT, "gui.advancements", yOffsetLeft);
-        yOffsetLeft = editWidget(HIDE_FEEDBACK, "menu.sendFeedback", yOffsetLeft);
-        editWidget(HIDE_OPTIONS_GAMEMENU, "menu.options", yOffsetLeft);
-
-        yOffsetRight = editWidget(HIDE_STATISTICS, "gui.stats", yOffsetRight);
-        yOffsetRight = editWidget(HIDE_REPORT, "menu.reportBugs", yOffsetRight);
-        yOffsetRight = editWidget(HIDE_LAN, "menu.shareToLan", yOffsetRight);
-        editWidget(HIDE_REPORTING, "menu.playerReporting", yOffsetRight);
-
-        if (HIDE_MODMENU_GAMEMENU) {
-            hideKeyedWidget("modmenu.title");
+        List<Tuple> widgetList = new ArrayList<>();
+        widgetList.add(new Unit<>(new Pair<>(HIDE_BACKTOGAME, getWidget("menu.returnToGame"))));
+        widgetList.add(new Pair<>(new Pair<>(HIDE_ADVANCEMENT, getWidget("gui.advancements")), new Pair<>(HIDE_STATISTICS, getWidget("gui.stats"))));
+        widgetList.add(new Pair<>(new Pair<>(HIDE_FEEDBACK, getWidget("menu.sendFeedback")), new Pair<>(HIDE_REPORT, getWidget("menu.reportBugs"))));
+        if (client.isInSingleplayer()) {
+            widgetList.add(new Pair<>(new Pair<>(HIDE_OPTIONS_GAMEMENU, getWidget("menu.options")), new Pair<>(HIDE_LAN, getWidget("menu.shareToLan"))));
+            widgetList.add(new Unit<>(new Pair<>(HIDE_SAVEANDQUIT, getWidget("menu.returnToMenu"))));
+        } else {
+            widgetList.add(new Pair<>(new Pair<>(HIDE_OPTIONS_GAMEMENU, getWidget("menu.options")), new Pair<>(HIDE_REPORTING, getWidget("menu.playerReporting"))));
+            widgetList.add(new Unit<>(new Pair<>(HIDE_DISCONNECT, getWidget("menu.disconnect"))));
         }
+        widgetList.add(new Unit<>(new Pair<>(HIDE_MODMENU_GAMEMENU, getWidget("modmenu.title"))));
+        editWidgetScreen(widgetList, 205, 106);  //250 120
     }
 }

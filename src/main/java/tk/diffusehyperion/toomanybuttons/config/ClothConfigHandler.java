@@ -26,6 +26,7 @@ public class ClothConfigHandler {
     public static boolean HIDE_COPYRIGHT;
 
     // gamemenu
+    public static boolean HIDE_BACKTOGAME;
     public static boolean HIDE_ADVANCEMENT;
     public static boolean HIDE_STATISTICS;
     public static boolean HIDE_FEEDBACK;
@@ -34,6 +35,8 @@ public class ClothConfigHandler {
     public static boolean HIDE_OPTIONS_GAMEMENU;
     public static boolean HIDE_LAN;
     public static boolean HIDE_REPORTING;
+    public static boolean HIDE_SAVEANDQUIT;
+    public static boolean HIDE_DISCONNECT;
 
     // options
     public static boolean HIDE_FOV;
@@ -76,6 +79,7 @@ public class ClothConfigHandler {
                     .name("HIDE_ACCESSIBILITY_TITLESCREEN").value(HIDE_ACCESSIBILITY_TITLESCREEN)
                     .name("HIDE_COPYRIGHT").value(HIDE_COPYRIGHT)
 
+                    .name("HIDE_BACKTOGAME").value(HIDE_BACKTOGAME)
                     .name("HIDE_ADVANCEMENT").value(HIDE_ADVANCEMENT)
                     .name("HIDE_STATISTICS").value(HIDE_STATISTICS)
                     .name("HIDE_FEEDBACK").value(HIDE_FEEDBACK)
@@ -84,6 +88,8 @@ public class ClothConfigHandler {
                     .name("HIDE_OPTIONS_GAMEMENU").value(HIDE_OPTIONS_GAMEMENU)
                     .name("HIDE_LAN").value(HIDE_LAN)
                     .name("HIDE_REPORTING").value(HIDE_REPORTING)
+                    .name("HIDE_SAVEANDQUIT").value(HIDE_SAVEANDQUIT)
+                    .name("HIDE_DISCONNECT").value(HIDE_DISCONNECT)
 
                     .name("HIDE_FOV").value(HIDE_FOV)
                     .name("HIDE_DIFFICULTY").value(HIDE_DIFFICULTY)
@@ -131,6 +137,7 @@ public class ClothConfigHandler {
                 HIDE_ACCESSIBILITY_TITLESCREEN = readBoolean(object, "HIDE_ACCESSIBILITY_TITLESCREEN", false);
                 HIDE_COPYRIGHT = readBoolean(object, "HIDE_COPYRIGHT", false);
 
+                HIDE_BACKTOGAME = readBoolean(object, "HIDE_BACKTOGAME", false);
                 HIDE_ADVANCEMENT = readBoolean(object, "HIDE_ADVANCEMENT", false);
                 HIDE_STATISTICS = readBoolean(object, "HIDE_STATISTICS", false);
                 HIDE_FEEDBACK = readBoolean(object, "HIDE_FEEDBACK", false);
@@ -139,6 +146,8 @@ public class ClothConfigHandler {
                 HIDE_OPTIONS_GAMEMENU = readBoolean(object, "HIDE_OPTIONS_GAMEMENU", false);
                 HIDE_LAN = readBoolean(object, "HIDE_LAN", false);
                 HIDE_REPORTING = readBoolean(object, "HIDE_REPORTING", false);
+                HIDE_SAVEANDQUIT = readBoolean(object, "HIDE_SAVEANDQUIT", false);
+                HIDE_DISCONNECT = readBoolean(object, "HIDE_DISCONNECT", false);
 
                 HIDE_FOV = readBoolean(object, "HIDE_FOV", false);
                 HIDE_DIFFICULTY = readBoolean(object, "HIDE_DIFFICULTY", false);
@@ -179,6 +188,7 @@ public class ClothConfigHandler {
         HIDE_ACCESSIBILITY_TITLESCREEN = false;
         HIDE_COPYRIGHT = false;
 
+        HIDE_BACKTOGAME = false;
         HIDE_ADVANCEMENT = false;
         HIDE_STATISTICS = false;
         HIDE_FEEDBACK = false;
@@ -187,6 +197,8 @@ public class ClothConfigHandler {
         HIDE_OPTIONS_GAMEMENU = false;
         HIDE_LAN = false;
         HIDE_REPORTING = false;
+        HIDE_SAVEANDQUIT = false;
+        HIDE_DISCONNECT = false;
 
         HIDE_FOV = false;
         HIDE_DIFFICULTY = false;
