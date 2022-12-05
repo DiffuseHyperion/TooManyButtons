@@ -14,6 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Objects;
 
+import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.HIDE_CONTROLS;
 import static tk.diffusehyperion.toomanybuttons.config.ClothConfigHandler.SIMPLIFY_CONTROLS;
 
 @Mixin(OptionsScreen.class)
@@ -25,7 +26,7 @@ public abstract class OptionsScreenMixin extends Screen {
 
     @Inject(method = "init", at = @At("HEAD"))
     public void initInjectMethod(CallbackInfo info) {
-        if (SIMPLIFY_CONTROLS) {
+        if (SIMPLIFY_CONTROLS && !HIDE_CONTROLS) {
             for (ClickableWidget widget : Screens.getButtons(this)) {
                 if (Objects.equals(widget.getMessage(), Text.translatable("options.controls"))) {
                     widget.visible = false;

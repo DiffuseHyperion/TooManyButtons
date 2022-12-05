@@ -6,7 +6,6 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ClickableWidget;
 import org.javatuples.Pair;
 import org.javatuples.Tuple;
-import org.javatuples.Unit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +50,7 @@ public class EditOptionsScreen extends ScreenWidgetEditor{
 
         List<Tuple> widgetList = new ArrayList<>();
         widgetList.add(new Pair<>(new Pair<>(HIDE_SKINS, getWidget("options.skinCustomisation")), new Pair<>(HIDE_MUSIC, getWidget("options.sounds"))));
-        if (!SIMPLIFY_CONTROLS || HIDE_CONTROLS) {
-            widgetList.add(new Pair<>(new Pair<>(HIDE_VIDEO, getWidget("options.video")), new Pair<>(HIDE_CONTROLS, getWidget("options.controls"))));
-        } else {
-            widgetList.add(new Unit<>(new Pair<>(HIDE_VIDEO, getWidget("options.video"))));
-        }
+        widgetList.add(new Pair<>(new Pair<>(HIDE_VIDEO, getWidget("options.video")), new Pair<>(HIDE_CONTROLS, getWidget("options.controls"))));
         widgetList.add(new Pair<>(new Pair<>(HIDE_LANGUAGE_OPTIONSMENU, getWidget("options.language")), new Pair<>(HIDE_CHAT, getWidget("options.chat.title"))));
         widgetList.add(new Pair<>(new Pair<>(HIDE_RESOURCE, getWidget("options.resourcepack")), new Pair<>(HIDE_ACCESSIBILITY_OPTIONSMENU, getWidget("options.accessibility.title"))));
         editWidgetScreen(widgetList, 310, 160);
