@@ -28,6 +28,5 @@
     "minecraft": "1.19.2",
     "modmenu": ">=4.0.6",
     "cloth-config": ">=8.2.88"
-  },
-  "accessWidener" : "assets/toomanybuttons/TooManyButtons.accesswidener"
+  }
 }
